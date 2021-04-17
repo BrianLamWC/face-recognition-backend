@@ -7,13 +7,13 @@ import {handleSignin} from './controllers/signin.js';
 import {handleProfile} from './controllers/profile.js';
 import {handleAPICall, handleImage} from './controllers/image.js';
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
-
 const db = knex({
     client: 'pg',
     connection: {
         connectString : process.env.DATBASE_URL,
-        ssl : true
+        ssl: {
+            rejectUnauthorized: false
+        }
     }
 });
 
