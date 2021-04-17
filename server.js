@@ -10,10 +10,14 @@ import {handleAPICall, handleImage} from './controllers/image.js';
 const db = knex({
     client: 'pg',
     connection: {
-        connectString : process.env.DATBASE_URL,
+        connectString: process.env.DATBASE_URL,
         ssl: {
             rejectUnauthorized: false
         }
+        // host : '127.0.0.1',
+        // user : 'postgres',
+        // password : '',
+        // database : 'smart-brain'
     }
 });
 
