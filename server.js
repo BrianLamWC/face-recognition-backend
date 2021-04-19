@@ -10,8 +10,10 @@ import {handleAPICall, handleImage} from './controllers/image.js';
 const db = knex({
     client: 'pg',
     connection: {
-        connectString: process.env.DATABASE_URL,
-        ssl: true
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
         // host : '127.0.0.1',
         // user : 'postgres',
         // password : '',
@@ -40,4 +42,5 @@ app.post('/imageurl', (req, res) => handleAPICall(req, res))
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('app is running on port ${process.env.PORT}')
+    console.log(process.env.DATABASE_URL);
 });
