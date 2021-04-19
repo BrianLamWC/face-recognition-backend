@@ -21,6 +21,7 @@ const handleRegister = (req, res, db, bcrypt)  => {
                 name: name,
                 joined: new Date()
             })
+            .returning('*')
             .then(user => {
                 res.json(user[0])
             })
@@ -28,7 +29,7 @@ const handleRegister = (req, res, db, bcrypt)  => {
         .then(trx.commit)
         .catch(trx.rollback)
     })
-    .catch(err => res.status(400).json(err))
+    .catch(err => res.status(400).json('unable to register'))
 }
 
 export {handleRegister};
